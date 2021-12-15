@@ -5,11 +5,14 @@ class Grid {
     this.cells = [];
     this.length = this.cells.length;
     this.forEach = this.cells.forEach;
-    initialData.forEach((line) => (this.cells = this.cells.concat(line)));
+    if (initialData)
+      initialData.forEach((line) => (this.cells = this.cells.concat(line)));
+    else this.cells = [...Array(width * height)];
   }
 
   valueAt = (x, y) => this.cells[y * this.height + x];
-  setValueAt = (x, y, value) => (this.cells[y * this.height + x] = value);
+  setValueAt = (x, y, value) => (this.cells[y * this.width + x] = value);
+  setDefaultvalue = (value) => (this.cells = this.cells.fill(value));
 
   find = (predicate) => this.cells.find(predicate);
   findPosition = (predicate) => {
