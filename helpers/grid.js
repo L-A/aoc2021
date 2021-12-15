@@ -21,6 +21,8 @@ class Grid {
     return [index % this.width, Math.floor(index / this.width)];
   };
 
+  count = (predicate) => this.cells.filter(predicate).length;
+
   cellNeighbors = (x, y, withDiagonals) =>
     [
       [x, y - 1],
