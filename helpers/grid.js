@@ -44,10 +44,13 @@ class Grid {
         ([x, y]) => x >= 0 && x < this.width && y >= 0 && y < this.height
       );
 
-  logGrid = () => {
+  logGrid = (mappingFunction = (v) => v) => {
     for (let i = 0; i < this.height; i++) {
       console.log(
-        this.cells.slice(i * this.width, (i + 1) * this.width).join("")
+        this.cells
+          .map(mappingFunction)
+          .slice(i * this.width, (i + 1) * this.width)
+          .join("")
       );
     }
   };
